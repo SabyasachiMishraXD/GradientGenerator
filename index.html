@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        background-image: linear-gradient(to right top , #051937,#004d7a,#008793,#00bf72,#a8eb12);
+    }
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 3.2rem;
+    }
+    #myBtn{
+        background-color: rgb(168,235,18);
+        color: rgb(34,34,34);
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-size: 2rem;
+        cursor: pointer;
+        
+    }
+
+    #myBtn2{
+        background-color: rgb(48, 99, 146);
+        color: rgb(34,34,34);
+        padding: 15px 30px;
+        border-radius: 5px;
+        font-size: 2rem;
+        cursor: pointer;
+       
+    }
+    #button_copy{
+        background-color: rgb(255, 255, 255);
+        color: rgb(34,34,34);
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .copyCode{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        font-size: 1.8rem;
+        width: 60%;
+        margin: 0 auto;
+        display: block;
+        line-height: 1.4;
+        letter-spacing: 0.2px;
+        border-left: 3px solid #fff;
+        background-color: rgba(189,189,189,0.1);
+        padding: 15px 8px 15px 17px;
+        border-radius: 5px;
+    }
+</style>
+<body>
+    <section>
+        <div>
+            <button id="myBtn">#051937</button>
+            <button id="myBtn2">#008793</button>
+        </div>
+        <button id="button_copy" onclick="copyFunction()"><h2>Copy Your Code</h2></button>
+        <div class="copyCode">
+            background-image : linear-gradient(to right, rgb(92,145,229), rgb(152,63,198))
+        </div> 
+    </section>
+    <script>
+        
+        let myBtn = document.getElementById('myBtn')
+        let myBtn2 = document.getElementById('myBtn2')
+        let downCode = document.querySelector('.copyCode')
+        const copyFunction = () => {
+            navigator.clipboard.writeText(downCode.textContent)
+            alert("Code copied successfully!");
+        }
+        let rgb1 = "#004773";
+        let rgb2 = "#54d542";
+
+        const getHexValues = () => {
+            let hexValues = "0123456789ABCDEF"
+            let colors = "#";
+            for (let index = 0; index < 6; index++) {
+               colors = colors + hexValues[Math.floor(Math.random() * 16)]
+            }
+            return colors
+        }  
+        const handleButton1 = () => {
+            rgb1 = getHexValues();
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`
+            myBtn.textContent = `${rgb1}`
+            downCode.textContent = `background-image : linear-gradient(to right, ${rgb1}, ${rgb2})`
+        }
+
+        const handleButton2 = () => {
+            rgb2 = getHexValues();
+            document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`
+            myBtn2.textContent = `${rgb2}`
+            downCode.textContent = `background-image : linear-gradient(to right, ${rgb1}, ${rgb2})`
+        }
+
+        myBtn.addEventListener('click', handleButton1);
+        myBtn2.addEventListener('click', handleButton2);
+    </script>
+</body>
+</html>
